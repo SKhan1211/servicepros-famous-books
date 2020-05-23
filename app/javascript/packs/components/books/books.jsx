@@ -5,15 +5,52 @@ class Books extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      books: []
+      books: [],
     };
+
+    this.handleGhostLis = this.handleGhostLis.bind(this);
   }
 
   componentDidMount() {
     fetch("https://servicepros-test-api.herokuapp.com/api/v1/books")
       .then(res => res.json())
       .then(books => this.setState({ books }))
-      .catch(error => console.log("Error while fetching books."))
+      .then(() => this.handleGhostLis())
+      .catch(error => console.log("Error while fetching books."))    
+  }
+
+  handleGhostLis() {
+    let lis = Array.from(document.getElementsByClassName("books__ul__list-container")[0].children);
+    if (lis.length % 4 !== 0) {
+      let leftover = lis.length % 4;
+      if (leftover === 1) { 
+        for (let i = 0; i < 3; i++) {
+          let li = document.createElement("li");
+          li.className = "books__ul__list__li-hidden";
+          document
+            .getElementsByClassName("books__ul__list-container")[0]
+            .appendChild(li);
+        }
+      } 
+      else if (leftover === 2) {
+        for (let i = 0; i < 2; i++) {
+          let li = document.createElement("li");
+          li.className = "books__ul__list__li-hidden";
+          document
+            .getElementsByClassName("books__ul__list-container")[0]
+            .appendChild(li);
+        }
+      }
+      else if (leftover === 3) {
+        for (let i = 0; i < 1; i++) {
+          let li = document.createElement("li");
+          li.className = 'books__ul__list__li-hidden'
+          document
+            .getElementsByClassName("books__ul__list-container")[0]            
+            .appendChild(li);
+        }
+      }
+    }
   }
 
   render() {
@@ -31,9 +68,9 @@ class Books extends React.Component {
         {/* Books Below can be moved to another BooksList Component */}
         <ul className="books__ul__list-container">
           {
-            this.state.books.slice(0, 5).map(book => {
+            this.state.books.map(book => {
               return (
-                <li key={book.isbn}>
+                <li key={book.title}>
                   <img src={Book} />
                   <p>{book.title}</p>
                   <p>by {book.author}</p>

@@ -1,5 +1,6 @@
 .books__outer-container {
   width: 100%;
+  margin-left: 15vw;
 
   background-color: $ghostwhite;
 
@@ -51,15 +52,47 @@
       padding: 2vw;
       font-family: $Montserrat;
       background-color: white;
-      text-align: center;
       transition: all 0.3s;
       border-radius: 5px;
+      display: inline-block;
+      margin: 1vw;
+      width: 15%;
+      min-width: 11rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 9rem;
+
+      img {
+        width: 5rem;
+        box-shadow: 1px 1px 4px black;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        margin-bottom: 1vw;
+      }
+
+      p:nth-of-type(1) {
+        // font-size: 1vw;
+        font-weight: 500;
+      }
+
+      p:nth-of-type(2) {
+        color: #8a8a8a;
+        font-size: 0.8rem;
+        font-weight: 500;
+        padding-top: 0.3rem;
+      }
     }
 
     li:hover {
       box-shadow: 2px 2px 7px -1px #888888;
       cursor: pointer;
       transform: scale(1.05);
+    }
+
+    .books__ul__list__li-hidden {
+      visibility: hidden;
     }
   }
 }
