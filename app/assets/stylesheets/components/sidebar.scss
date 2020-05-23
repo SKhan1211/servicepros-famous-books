@@ -58,7 +58,7 @@
         }
 
         .sidebar__div__book-container {
-          border: 1px solid #0d1721;
+          border: 2px solid #0d1721;
           box-sizing: border-box;
           transition: 0.2s border;
           color: $ghostwhite;
@@ -66,7 +66,7 @@
         }
 
         .sidebar__div__book-container:hover {
-          border: 1px solid #0e6398;
+          border: 2px solid rgb(67, 67, 67);
           box-sizing: border-box;
           cursor: pointer;
           color: rgb(44, 139, 222);
