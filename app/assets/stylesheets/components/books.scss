@@ -1,0 +1,65 @@
+.books__outer-container {
+  width: 100%;
+
+  background-color: $ghostwhite;
+
+  .books__header__title-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 2vw 4vw;
+    font-family: $Montserrat;
+
+    h1 {
+      font-size: 2.5vw;
+      font-weight: 400;
+      color: $spblue;
+    }
+
+    .books__header__title__input-container {
+      display: flex;
+
+      input {
+        border: 0;
+        outline: 0;
+        border-bottom: 1px solid rgb(191, 190, 190);
+        background-color: $ghostwhite;
+        font-family: $Montserrat;
+        font-size: 1vw;
+        color: gray;
+        width: 80%;
+      }
+
+      input::placeholder {
+        color: rgb(167, 166, 166);
+      }
+
+      .fa-search {
+        color: #c5c5c8;
+        border-bottom: 1px solid rgb(191, 190, 190);
+        font-size: 1.5vw;
+      }
+    }
+  }
+
+  /* Books li container */
+  .books__ul__list-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+
+    li {
+      padding: 2vw;
+      font-family: $Montserrat;
+      background-color: white;
+      text-align: center;
+      transition: all 0.3s;
+      border-radius: 5px;
+    }
+
+    li:hover {
+      box-shadow: 2px 2px 7px -1px #888888;
+      cursor: pointer;
+      transform: scale(1.05);
+    }
+  }
+}

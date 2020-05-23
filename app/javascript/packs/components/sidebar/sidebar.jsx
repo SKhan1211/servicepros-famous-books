@@ -9,7 +9,6 @@ class SideBar extends React.Component {
         <section className="sidebar__section__logo-container">
           <img src={MyLogo}></img>
         </section>
-
         <section className="sidebar__section__lists-container">
           <div className="sidebar__div__browse-container">
             <header>Browse</header>
@@ -28,7 +27,7 @@ class SideBar extends React.Component {
             </ul>
           </div>
           <div className="sidebar__div__bookmarks-container">
-            <header>Bookmarks</header>
+            <header>Bookmarked</header>
             <ul>
               <li className="sidebar__div__book-container"><img src={Book} /><p>Book 1</p></li>
               <li className="sidebar__div__book-container"><img src={Book} /><p>Book 2</p></li>
