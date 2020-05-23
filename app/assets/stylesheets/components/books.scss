@@ -62,6 +62,7 @@
       flex-direction: column;
       justify-content: center;
       min-height: 9rem;
+      text-align: center;
 
       img {
         width: 5rem;
@@ -73,7 +74,6 @@
       }
 
       p:nth-of-type(1) {
-        // font-size: 1vw;
         font-weight: 500;
       }
 
