@@ -15,21 +15,23 @@ class Books extends React.Component {
   }
 
   componentDidMount() {
-    // Setting props to state
+    // Setting props to state after sorting
+    let books = [...this.props.books];
+    books.sort((a, b) => this.sortHelperMethod(a, b, this.props.path));
     this.setState({
-      books: this.props.books,
-      selectedTitle: (this.props.path || 'default'),
+      books,
+      selectedTitle: (this.props.path || 'alphabetical'),
     });
     // Setting up any needed ghost li's to push flexed elements to the left
     this.handleGhostLis();
     // Selecting correct sort title to make it not clickable
     let title = document.getElementsByClassName("books__header__title__sort-container")[0]
     if (this.props.path === 'alphabetical') {
-      title.children[2].className = "books__header__sort__selected";
-    } else if (this.props.path === 'rating') {
-      title.children[4].className = "books__header__sort__selected";
-    } else {
       title.children[0].className = "books__header__sort__selected";
+    } else if (this.props.path === 'price') {
+      title.children[2].className = "books__header__sort__selected";
+    } else {
+      title.children[4].className = "books__header__sort__selected";
     }
   }
 
@@ -129,10 +131,11 @@ class Books extends React.Component {
         ) matches.push(book)
       });
       // Using the sort helper method to sort user searches dynamically based on the url setting
-      if (this.props.path === 'alphabetical') matches.sort((a, b) => this.sortHelperMethod(a, b, this.props.path));
+      if (this.props.path === 'alphabetical' || this.props.path === 'price') matches.sort((a, b) => this.sortHelperMethod(a, b, this.props.path));
       else if (this.props.path === 'rating') matches.sort((a, b) => this.sortHelperMethod(a, b, this.props.path)).reverse();
       this.setState({ books: matches });
     } else {
+      // Used when clearing out the search bar
       let books = [...this.props.books];
       books.sort((a, b) => this.sortHelperMethod(a, b, this.props.path));
       if (this.props.path === 'rating') books.reverse();
@@ -177,8 +180,12 @@ class Books extends React.Component {
       this.setState({ books: sortedBooks });
       this.handleGhostLis();
     }
-    else {
-      this.setState({ books: this.props.books });
+    else if (path === 'price') {
+      let sortedBooks = [...this.state.books];
+      sortedBooks.sort((a, b) => this.sortHelperMethod(a, b, "price"));
+      this.removeGhostLis();
+      this.setState({ books: sortedBooks });
+      this.handleGhostLis();
     }
   }
 
@@ -199,6 +206,14 @@ class Books extends React.Component {
       if (bookRatingA > bookRatingB) comparison = 1;
       else if (bookRatingA < bookRatingB) comparison = -1;
       return comparison;
+    } else if (type === "price") {
+      const bookPriceA = parseFloat(a.price);
+      const bookPriceB = parseFloat(b.price);
+
+      let comparison = 0;
+      if (bookPriceA > bookPriceB) comparison = 1;
+      if (bookPriceA < bookPriceB) comparison = -1;
+      return comparison;
     }
   }
 
@@ -209,9 +224,9 @@ class Books extends React.Component {
           <h1>Bookstore</h1>
 
           <div className="books__header__title__sort-container">
-            <Link data-title-type="default" to="/books"><p>Default</p></Link>
-            <span>/</span>
             <Link data-title-type="alphabetical" to="/books?sort=alphabetical"><p>Alphabetical</p></Link>
+            <span>/</span>
+            <Link data-title-type="price" to="/books?sort=price"><p>Price</p></Link>
             <span>/</span>
             <Link data-title-type="rating" to="/books?sort=rating"><p>Rating</p></Link>
           </div>
