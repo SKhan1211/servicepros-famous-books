@@ -15,7 +15,7 @@ class App extends React.Component {
         {location.pathname === "/books" || location.pathname === "/collection" ? <SideBar /> : null}
         <Switch>
           <Route exact path="/books" component={BooksContainer} />
-          <Route exact path="/" component={Home} />
+          <Route path="/" component={Home} />
         </Switch>
       </div>
     );
