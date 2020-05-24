@@ -107,6 +107,7 @@ class Books extends React.Component {
   }
 
   render() {
+    console.log(this.state.books)
     return (
       <div className="books__outer-container">
         <header className="books__header__title-container">
@@ -126,6 +127,10 @@ class Books extends React.Component {
                   <img src={Book} />
                   <p>{book.title}</p>
                   <p>by {book.author}</p>
+                  <div className="books__li__info-container">
+                    <p>${book.price}</p>
+                    <p>{book.rating}</p>
+                  </div>
                 </li>
               );
             })
