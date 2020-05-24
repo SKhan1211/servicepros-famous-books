@@ -125,9 +125,12 @@ class Books extends React.Component {
     if (event.target.value) {
       let matches = [];
       this.props.books.forEach(book => {
+        let escapedBookTitle = book.title.toLowerCase().replace(/\s+/g, '');
+        let escapedBookAuthor = book.author.toLowerCase().replace(/\s+/g, '');
+        let escapedSearchInput = event.target.value.toLowerCase().replace(/\s+/g, '');
         if (
-          book.title.toLowerCase().includes(event.target.value.toLowerCase()) ||
-          book.author.toLowerCase().includes(event.target.value.toLowerCase())
+          escapedBookTitle.includes(escapedSearchInput) ||
+          escapedBookAuthor.includes(escapedSearchInput)
         ) matches.push(book)
       });
       // Using the sort helper method to sort user searches dynamically based on the url setting
