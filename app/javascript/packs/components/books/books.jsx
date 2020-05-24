@@ -13,11 +13,8 @@ class Books extends React.Component {
   }
 
   componentDidMount() {
-    fetch("https://servicepros-test-api.herokuapp.com/api/v1/books")
-      .then(res => res.json())
-      .then(books => this.setState({ books }))
-      .then(() => this.handleGhostLis())
-      .catch(error => console.log("Error while fetching books."))    
+    this.setState({ books: this.props.books })
+    this.handleGhostLis();
   }
 
   componentDidUpdate(_prevProps, prevState) {
@@ -92,8 +89,10 @@ class Books extends React.Component {
 
   handleSearch() {
     if (event.target.value) {
+      let hiddenLis = document.getElementsByClassName("books__ul__list__li-hidden");
+      while (hiddenLis.length > 0) hiddenLis[0].parentNode.removeChild(hiddenLis[0]);
       let matches = [];
-      this.state.books.forEach(book => {
+      this.props.books.forEach(book => {
         if (
           book.title.toLowerCase().includes(event.target.value.toLowerCase()) ||
           book.author.toLowerCase().includes(event.target.value.toLowerCase())
@@ -103,16 +102,11 @@ class Books extends React.Component {
     } else {
       let hiddenLis = document.getElementsByClassName("books__ul__list__li-hidden");
       while (hiddenLis.length > 0) hiddenLis[0].parentNode.removeChild(hiddenLis[0]);
-      // this.setState({ books: this.props.books });
-
-      fetch("https://servicepros-test-api.herokuapp.com/api/v1/books")
-        .then((res) => res.json())
-        .then((books) => this.setState({ books }));
+      this.setState({ books: this.props.books });
     }
   }
 
   render() {
-    console.log(this.state.books);
     return (
       <div className="books__outer-container">
         <header className="books__header__title-container">

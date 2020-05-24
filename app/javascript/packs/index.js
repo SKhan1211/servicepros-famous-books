@@ -6,18 +6,19 @@ import configureStore from "./store/store";
 import * as APIBookUtil from './util/books_api_util';
 
 document.addEventListener('DOMContentLoaded', async () => {
+  let store;
   const preloadedState = {
     entities: {
       books: await APIBookUtil.fetchBooks()
     },
   };
 
-  const store = configureStore(preloadedState);
+  store = configureStore(preloadedState);
   
   // Test functions for Redux store, remove in production
   window.getState = store.getState;
   window.dispatch = store.dispatch;
 
   const root = document.getElementById('root');
-  ReactDOM.render(<Root />, root);
+  ReactDOM.render(<Root store={store} />, root);
 })
