@@ -19,6 +19,10 @@
       background: #08111b;
       background: linear-gradient(rgba(9, 16, 27, 0.82), rgba(9, 16, 27, 0.92)), url(asset-path('books_image.jpeg')) center no-repeat;
     }
+
+    img:hover {
+      cursor: pointer;
+    }
   }
 
   .sidebar__section__lists-container {
@@ -49,6 +53,8 @@
           display: flex;
           padding: 0.5vw 0;
           align-items: center;
+          padding-left: 0;
+          transition: padding-left 0.5s;
 
           img {
             width: 2vw;
@@ -64,6 +70,47 @@
             cursor: pointer;
             color: rgb(44, 139, 222);
           }
+
+          a {
+            display: inline-block;
+            text-decoration: none;
+            color: $ghostwhite;
+            transition: color 0.2s;
+          }
+
+          a:hover {
+            cursor: pointer;
+            color: rgb(44, 139, 222);
+          }
+
+          .sidebar__div__browse__selected-li__link-p {
+            cursor: default;
+          }
+
+          .sidebar__div__browse__selected-li__link-p:hover {
+            pointer-events: none;
+            color: $ghostwhite;
+          }
+
+          .sidebar__div__li__div-marker {
+            position: absolute;
+            height: 100%;
+            width: 4%;
+            background: #424244;
+            left: -3px;
+            border-radius: 3px 0px 0px 3px;
+            top: 0px;
+          }
+        }
+
+        /* Selected Li */
+        .sidebar__div__browse__selected-li {
+          background: #1886c4;
+          border-radius: 3px 0px 0 3px;
+          width: 108%;
+          position: relative;
+          padding-left: 12px;
+          transition: all 0.7s;
         }
 
         .sidebar__div__book-container {
