@@ -106,6 +106,29 @@ class Books extends React.Component {
     }
   }
 
+  createRatings(num) {
+    // Algorithm to turn rating into Font Awesome icons
+    let stars = [];
+    let filledStar = <i className="fas fa-star"></i>;
+    let unfilledStar = <i className="far fa-star"></i>;
+    let numOfUnfilled = 5 - num;
+
+    for (let i = 0; i < num; i++) {
+      stars.push(filledStar);
+    };
+
+    for (let i = 0; i < numOfUnfilled; i++) {
+      stars.push(unfilledStar);
+    }
+    return (
+      <div className="books__li__stars-container">
+        {
+          stars.map(star => star)
+        }
+      </div>
+    )
+  }
+
   render() {
     console.log(this.state.books)
     return (
@@ -128,8 +151,8 @@ class Books extends React.Component {
                   <p>{book.title}</p>
                   <p>by {book.author}</p>
                   <div className="books__li__info-container">
+                    <p>{this.createRatings(book.rating)}</p>
                     <p>${book.price}</p>
-                    <p>{book.rating}</p>
                   </div>
                 </li>
               );

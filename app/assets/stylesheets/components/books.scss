@@ -87,6 +87,17 @@
       .books__li__info-container {
         display: flex;
         justify-content: space-evenly;
+        align-items: flex-end;
+        padding-top: 0.2rem;
+
+        p:first-of-type {
+          color: #898a89;
+          font-size: 0.8rem;
+        }
+
+        .fas.fa-star {
+          color: $fireopal;
+        }
       }
     }
 
