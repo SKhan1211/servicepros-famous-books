@@ -7,6 +7,7 @@ class Books extends React.Component {
     super(props);
     this.state = {
       books: [],
+      selectedTitle: '',
     };
 
     this.handleGhostLis = this.handleGhostLis.bind(this);
@@ -14,24 +15,42 @@ class Books extends React.Component {
   }
 
   componentDidMount() {
+    // Setting props to state
     this.setState({
       books: this.props.books,
-      location: this.props.location.search
+      selectedTitle: (this.props.path || 'default'),
     });
+    // Setting up any needed ghost li's to push flexed elements to the left
     this.handleGhostLis();
+    // Selecting correct sort title to make it not clickable
+    let title = document.getElementsByClassName("books__header__title__sort-container")[0]
+    if (this.props.path === 'alphabetical') {
+      title.children[2].className = "books__header__sort__selected";
+    } else if (this.props.path === 'rating') {
+      title.children[4].className = "books__header__sort__selected";
+    } else {
+      title.children[0].className = "books__header__sort__selected";
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
+    // If books state changes, create the correct ghost lis
     if (prevState.books !== this.state.books) {
       this.handleGhostLis();
     }
 
+    // If path changes, update selected title and then sort appropriately
     if (prevProps.path !== this.props.path) {
-      this.handleSorting(this.props.path.sort);
+      document.querySelectorAll(`[data-title-type='${prevProps.path}']`)[0].className = '';
+      document.querySelectorAll(
+        `[data-title-type='${this.props.path}']`
+      )[0].className = "books__header__sort__selected";
+      this.handleSorting(this.props.path);
     }
   }
 
   handleGhostLis() {
+    this.removeGhostLis(); // First clear all ghost li's that already exist before appending as needed
     let lis = Array.from(document.getElementsByClassName("books__ul__list-container")[0].children);
     if (lis.length % 4 !== 0) {
       // This algorithm appends ghost li's to the document to push items to the left if there are an uneven number
@@ -102,7 +121,6 @@ class Books extends React.Component {
 
   handleSearch() {
     if (event.target.value) {
-      this.removeGhostLis();
       let matches = [];
       this.props.books.forEach(book => {
         if (
@@ -110,10 +128,15 @@ class Books extends React.Component {
           book.author.toLowerCase().includes(event.target.value.toLowerCase())
         ) matches.push(book)
       });
+      // Using the sort helper method to sort user searches dynamically based on the url setting
+      if (this.props.path === 'alphabetical') matches.sort((a, b) => this.sortHelperMethod(a, b, this.props.path));
+      else if (this.props.path === 'rating') matches.sort((a, b) => this.sortHelperMethod(a, b, this.props.path)).reverse();
       this.setState({ books: matches });
     } else {
-      this.removeGhostLis();
-      this.setState({ books: this.props.books });
+      let books = [...this.props.books];
+      books.sort((a, b) => this.sortHelperMethod(a, b, this.props.path));
+      if (this.props.path === 'rating') books.reverse();
+      this.setState({ books });
     }
   }
 
@@ -155,7 +178,7 @@ class Books extends React.Component {
       this.handleGhostLis();
     }
     else {
-      
+      this.setState({ books: this.props.books });
     }
   }
 
@@ -186,11 +209,11 @@ class Books extends React.Component {
           <h1>Bookstore</h1>
 
           <div className="books__header__title__sort-container">
-            <p>Default</p>
+            <Link data-title-type="default" to="/books"><p>Default</p></Link>
             <span>/</span>
-            <Link to="/books?sort=alphabetical"><p>Alphabetical</p></Link>
+            <Link data-title-type="alphabetical" to="/books?sort=alphabetical"><p>Alphabetical</p></Link>
             <span>/</span>
-            <Link to="/books?sort=rating"><p>Rating</p></Link>
+            <Link data-title-type="rating" to="/books?sort=rating"><p>Rating</p></Link>
           </div>
 
           <div className="books__header__title__input-container">

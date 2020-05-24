@@ -24,10 +24,17 @@
         padding: 0 1vw;
       }
 
-      .books__header__title__sort-container > p:first-of-type {
+      .books__header__sort__selected {
         color: black;
         cursor: default;
         text-decoration: none;
+      }
+
+      .books__header__sort__selected:hover {
+        color: black;
+        cursor: default;
+        text-decoration: none;
+        pointer-events: none;
       }
 
       a {
