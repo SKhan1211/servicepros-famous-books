@@ -125,6 +125,7 @@ class Books extends React.Component {
     if (event.target.value) {
       let matches = [];
       this.props.books.forEach(book => {
+        // The 3 variables below keep track of all escaped whitespace
         let escapedBookTitle = book.title.toLowerCase().replace(/\s+/g, '');
         let escapedBookAuthor = book.author.toLowerCase().replace(/\s+/g, '');
         let escapedSearchInput = event.target.value.toLowerCase().replace(/\s+/g, '');
