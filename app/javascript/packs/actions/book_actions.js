@@ -13,10 +13,10 @@ const receiveErrors = (errors) => ({
   errors,
 });
 
-export const signup = () => dispatch => (
-  APIUtil.fetchBooks().then(books => (
-    dispatch(receiveBooks(books))
-  ), err => (
-    dispatch(receiveErrors(err.responseJSON))
-  ))
-);
+// export const fetchBooks = () => dispatch => (
+//   APIUtil.fetchBooks().then(books => (
+//     dispatch(receiveBooks(books))
+//   ), err => (
+//     dispatch(receiveErrors(err.responseJSON))
+//   ))
+// );

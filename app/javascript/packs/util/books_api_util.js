@@ -18,21 +18,3 @@ export const createRandomRating = () => {
   if (randomNum < 1) return createRandomRating();
   else return Math.floor(randomNum);
 }
-
-export const getBooksImages = (books) => {
-  return books.map(book => {
-    return fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=intitle:${book.title}&maxResults=1`
-    )
-      .then((res) => res.json())
-      .then((bookInfo) => (
-        { title: book.title, 
-          author: book.author, 
-          isbn: book.isbn, 
-          price: book.price,
-          rating: book.rating,
-          year: book.year,
-          image: bookInfo.items[0].volumeInfo.imageLinks.smallThumbnail 
-        }));
-  });
-}

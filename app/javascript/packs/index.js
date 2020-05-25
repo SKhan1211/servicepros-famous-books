@@ -14,9 +14,14 @@ document.addEventListener('DOMContentLoaded', async () => {
   books = books.slice(1, 18).concat(unorderedEle).concat(books.slice(18));
 
   // Append random price and rating to every entry
-  books.map(book => {
+  books.map(async book => {
     book.price = APIBookUtil.createRandomPrice();
     book.rating = APIBookUtil.createRandomRating();
+    book.image = await fetch(
+      `https://www.googleapis.com/books/v1/volumes?q=intitle:${book.title}&maxResults=1`
+    )
+      .then((res) => res.json())
+      .then((bookInfo) => bookInfo.items[0].volumeInfo.imageLinks.smallThumbnail);
   });
 
   const preloadedState = {
