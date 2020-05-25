@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import Book from "../../../../assets/images/placeholder_book_cover.gif";
+import LazyLoad from 'react-lazyload';
 
 class Books extends React.Component {
   constructor(props) {
@@ -248,7 +249,9 @@ class Books extends React.Component {
             this.state.books.map(book => {
               return (
                 <li key={book.title}>
-                  <img src={book.image ? book.image : Book} />
+                  <LazyLoad height={200} placeholder={<img src={Book} />} once >
+                    <img src={book.image ? book.image : Book} />
+                  </LazyLoad>
                   <p>{book.title}</p>
                   <p>by {book.author}</p>
                   <div className="books__li__info-container">
