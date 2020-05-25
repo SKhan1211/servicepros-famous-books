@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   let unorderedEle = books.slice(0, 1);
   books = books.slice(1, 18).concat(unorderedEle).concat(books.slice(18));
 
-  // Append random price and rating to every entry
+  // Append random price and rating to every entry as well as the image from Google Books API
   books.map(async book => {
     book.price = APIBookUtil.createRandomPrice();
     book.rating = APIBookUtil.createRandomRating();

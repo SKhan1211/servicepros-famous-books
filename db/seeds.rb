@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# Book.create({title: 'Cheese is good', description: '', genre: ''});
+# Book.create({title: 'Cheese is good', description: '', genre: '', categories: [], price: int, rating: int});
 # 1984
 # A Clockwork Orange
 # A Dance to the Music of Time
