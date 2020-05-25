@@ -8,20 +8,19 @@ import * as APIBookUtil from './util/books_api_util';
 document.addEventListener('DOMContentLoaded', async () => {
   let store;
   
-  // Fetch books from Service Pros API and set in correct order alphabetically
+  // Fetch books from my custom API and set in correct order alphabetically
   let books = await APIBookUtil.fetchBooks();
-  let unorderedEle = books.slice(0, 1);
-  books = books.slice(1, 18).concat(unorderedEle).concat(books.slice(18));
+  books.sort((a, b) => {
+    if (a.title[0].toUpperCase() > b.title[0].toUpperCase()) return 1
+    else if (a.title[0].toUpperCase() < b.title[0].toUpperCase()) return -1
+    else return 0
+  });
 
-  // Append random price and rating to every entry as well as the image from Google Books API
-  books.map(async book => {
-    book.price = APIBookUtil.createRandomPrice();
-    book.rating = APIBookUtil.createRandomRating();
-    book.image = await fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=intitle:${book.title}&maxResults=1`
-    )
-      .then((res) => res.json())
-      .then((bookInfo) => bookInfo.items[0].volumeInfo.imageLinks.smallThumbnail);
+  // Append random price, rating, and isbn to every entry that is null
+  books.map(book => {
+    if (book.price === null) book.price = APIBookUtil.createRandomPrice();
+    if (book.rating === null) book.rating = APIBookUtil.createRandomRating();
+    if (book.isbn === null) book.isbn = APIBookUtil.createRandomIsbn();
   });
 
   const preloadedState = {

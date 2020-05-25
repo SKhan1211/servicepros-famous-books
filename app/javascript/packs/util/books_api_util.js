@@ -1,5 +1,5 @@
 export const fetchBooks = () => {
-  return fetch("https://servicepros-test-api.herokuapp.com/api/v1/books", {
+  return fetch("/api/v1/books", {
     method: "GET",
   })
     .then((res) => res.json())
@@ -17,4 +17,13 @@ export const createRandomRating = () => {
   let randomNum = Math.random() * 6;
   if (randomNum < 1) return createRandomRating();
   else return Math.floor(randomNum);
+}
+
+export const createRandomIsbn = () => {
+  let randomIsbn = '';
+  while (randomIsbn.length < 13) {
+    randomIsbn += Math.floor(Math.random() * 10).toString();
+  }
+  if (randomIsbn[0] === '0') randomIsbn = '9' + randomIsbn.slice(1);
+  return randomIsbn;
 }
