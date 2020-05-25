@@ -6,8 +6,7 @@ class Books extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      books: [],
-      selectedTitle: '',
+      books: this.props.books,
     };
 
     this.handleGhostLis = this.handleGhostLis.bind(this);
@@ -15,13 +14,15 @@ class Books extends React.Component {
   }
 
   componentDidMount() {
-    // Setting props to state after sorting
-    let books = [...this.props.books];
-    books.sort((a, b) => this.sortHelperMethod(a, b, this.props.path));
-    this.setState({
-      books,
-      selectedTitle: (this.props.path || 'alphabetical'),
-    });
+    // Setting props to state after sorting if there is a sort query in URL
+    if (this.props.location.search.length > 0) {
+      let books = [...this.props.books];
+      books.sort((a, b) => this.sortHelperMethod(a, b, this.props.path));
+      this.setState({
+        books,
+      });
+    }
+    
     // Setting up any needed ghost li's to push flexed elements to the left
     this.handleGhostLis();
     // Selecting correct sort title to make it not clickable
@@ -247,7 +248,7 @@ class Books extends React.Component {
             this.state.books.map(book => {
               return (
                 <li key={book.title}>
-                  <img src={Book} />
+                  <img src={book.image ? book.image : Book} />
                   <p>{book.title}</p>
                   <p>by {book.author}</p>
                   <div className="books__li__info-container">
