@@ -1,5 +1,3 @@
-import * as APIUtil from "../util/books_api_util";
-
 export const RECEIVE_BOOKS = "RECEIVE_BOOKS";
 export const RECEIVE_BOOK_ERRORS = "RECEIVE_BOOK_ERRORS";
 
@@ -13,10 +11,3 @@ const receiveErrors = (errors) => ({
   errors,
 });
 
-// export const fetchBooks = () => dispatch => (
-//   APIUtil.fetchBooks().then(books => (
-//     dispatch(receiveBooks(books))
-//   ), err => (
-//     dispatch(receiveErrors(err.responseJSON))
-//   ))
-// );

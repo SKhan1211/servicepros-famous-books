@@ -25,7 +25,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const preloadedState = {
     entities: {
-      books
+      books,
+      newReleases: books.slice(books.length - 3),
     },
   };
 

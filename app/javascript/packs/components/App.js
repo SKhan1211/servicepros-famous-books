@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import Home from './home/home';
 import BooksContainer from './books/books_container';
-import SideBar from './sidebar/sidebar';
+import SideBarContainer from './sidebar/sidebar_container';
 
 class App extends React.Component {
   render () {
@@ -12,7 +12,7 @@ class App extends React.Component {
     window.onpopstate = () => location.reload();
     return (
       <div style={{ display: "flex" }}>
-        {location.pathname === "/books" || location.pathname === "/collection" ? <SideBar /> : null}
+        {location.pathname === "/books" || location.pathname === "/collection" ? <SideBarContainer /> : null}
         <Switch>
           <Route exact path="/books" component={BooksContainer} />
           <Route path="/" component={Home} />

@@ -71,9 +71,15 @@ class SideBar extends React.Component {
           <div className="sidebar__div__new_releases-container">
             <header>New Releases</header>
             <ul>
-              <li className="sidebar__div__book-container"><img src={Book} /><p>Book 1</p></li>
-              <li className="sidebar__div__book-container"><img src={Book} /><p>Book 2</p></li>
-              <li className="sidebar__div__book-container"><img src={Book} /><p>Book 3</p></li>
+              {this.props.newReleases.map(book => (
+                <li key={`new-release-${book.title}`} className="sidebar__div__book-container">
+                  <img src={book.image} />
+                  <div className="sidebar__div__book__text">
+                    <p>{book.title}</p>
+                    <p>{book.author}</p>
+                  </div>
+                </li>
+              ))}
             </ul>
           </div>
           <div className="sidebar__div__bookmarks-container">

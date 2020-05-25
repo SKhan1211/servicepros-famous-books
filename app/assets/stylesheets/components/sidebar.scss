@@ -118,6 +118,21 @@
           transition: 0.2s border;
           color: $ghostwhite;
           padding: 0.5vw;
+
+          .sidebar__div__book__text {
+            display: flex;
+            flex-direction: column;
+
+            p:first-of-type {
+              font-size: 0.9vw;
+              padding-bottom: 3px;
+            }
+
+            p:last-of-type {
+              font-size: 0.7vw;
+              color: gray;
+            }
+          }
         }
 
         .sidebar__div__book-container:hover {
