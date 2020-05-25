@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import Book from "../../../../assets/images/placeholder_book_cover.gif";
-import LazyLoad from 'react-lazyload';
+import LazyLoad, { forceCheck } from 'react-lazyload';
 
 class Books extends React.Component {
   constructor(props) {
@@ -19,6 +19,7 @@ class Books extends React.Component {
     if (this.props.location.search.length > 0) {
       let books = [...this.props.books];
       books.sort((a, b) => this.sortHelperMethod(a, b, this.props.path));
+      if (this.props.path === 'rating') books.reverse();
       this.setState({
         books,
       });
@@ -41,6 +42,7 @@ class Books extends React.Component {
     // If books state changes, create the correct ghost lis
     if (prevState.books !== this.state.books) {
       this.handleGhostLis();
+      forceCheck(); // Checks inital books are not lazy loaded
     }
 
     // If path changes, update selected title and then sort appropriately
@@ -249,7 +251,7 @@ class Books extends React.Component {
             this.state.books.map(book => {
               return (
                 <li key={book.title}>
-                  <LazyLoad height={200} placeholder={<img src={Book} />} once >
+                  <LazyLoad height={200} placeholder={<img src={Book} />} >
                     <img src={book.image ? book.image : Book} />
                   </LazyLoad>
                   <p>{book.title}</p>

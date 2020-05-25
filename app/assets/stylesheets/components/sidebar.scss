@@ -80,7 +80,6 @@
 
           a:hover {
             cursor: pointer;
-            color: rgb(44, 139, 222);
           }
 
           .sidebar__div__browse__selected-li__link-p {
@@ -126,6 +125,24 @@
           box-sizing: border-box;
           cursor: pointer;
           color: rgb(44, 139, 222);
+        }
+
+        /* # Explore styling */
+        li[data-sidebar-nav-type="explore"] p {
+          background-color: #F6F8FF;
+          background-image: linear-gradient(
+            -75deg, transparent 0, transparent 5%, rgba(255,255,255,0.5) 5%,
+            rgba(255,255,255,0.5%) 10%, transparent 10%, transparent 100%
+          );
+          background-size: 200% 100%;
+          -webkit-text-fill-color: transparent;
+          -webkit-background-clip: text;
+         transition: background-position 0.6s ease-out;
+        }
+
+        [data-sidebar-nav-type="explore"] p:hover {
+          background-color: rgb(44, 139, 222);
+          background-position: -130% 0;
         }
       }
     }

@@ -65,7 +65,7 @@ class SideBar extends React.Component {
             <ul>
               <li data-sidebar-nav-type="books"><Link to="/books"><p>Bookstore</p></Link></li>
               <li data-sidebar-nav-type="collection"><Link to="/collection"><p>My Collection</p></Link></li>
-              <li data-sidebar-nav-type="explore"><p># Explore</p></li>
+              <li data-sidebar-nav-type="explore"><Link to="/explore"><p># Explore</p></Link></li>
             </ul>
           </div>
           <div className="sidebar__div__new_releases-container">
