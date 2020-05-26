@@ -15,6 +15,13 @@ class BookPage extends React.Component {
       .then(bookData => this.setState({ book: bookData.book }))
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.book !== this.props.book) {
+      this.props.fetchBook(this.props.book)
+      .then(bookData => this.setState({ book: bookData.book }))
+    }
+  }
+
   createRatings(num) {
     // Algorithm to turn rating into Font Awesome icons
     let stars = [];
