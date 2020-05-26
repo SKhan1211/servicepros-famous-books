@@ -5,6 +5,7 @@ import Home from './home/home';
 import BooksContainer from './books/books_container';
 import SideBarContainer from './sidebar/sidebar_container';
 import BookPageContainer from './book_page/book_page_container';
+import Explore from './explore/explore';
 
 class App extends React.Component {
   render () {
@@ -19,6 +20,7 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/books" component={BooksContainer} />
           <Route exact path="/book/:title" component={BookPageContainer} />
+          <Route exact path="/explore" component={Explore} />
           <Route path="/" component={Home} />
         </Switch>
       </div>
