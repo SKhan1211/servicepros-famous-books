@@ -6,19 +6,24 @@ class BookPage extends React.Component {
     super(props)
 
     this.state = {
-      book: { title: '' }
+      book: { title: '' },
+      bookmarkedBooks: [],
     }
   }
 
   componentDidMount() {
     this.props.fetchBook(this.props.book)
-      .then(bookData => this.setState({ book: bookData.book }))
+      .then(bookData => this.setState({ book: bookData.book, bookmarkedBooks: this.props.bookmarkedBooks }))
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.book !== this.props.book) {
       this.props.fetchBook(this.props.book)
       .then(bookData => this.setState({ book: bookData.book }))
+    }
+
+    if (prevProps.bookmarkedBooks !== this.props.bookmarkedBooks) {
+      this.setState({ bookmarkedBooks: this.props.bookmarkedBooks });
     }
   }
 
@@ -40,8 +45,8 @@ class BookPage extends React.Component {
   }
 
   render() {
-    console.log(this.state.book)
-    const { book } = this.state;
+    const { book, bookmarkedBooks } = this.state;
+    console.log(bookmarkedBooks)
 
     return (
       <div className="book_page__outer-container">
@@ -91,11 +96,20 @@ class BookPage extends React.Component {
                     <i className="fas fa-shopping-cart"></i>
                   </div>
                 </button>
-                <button>
-                  <div className="book_page__button-text-container">
-                    <span>Bookmark</span>
-                    <i className="far fa-bookmark"></i>
-                  </div>
+                <button onClick={() => this.props.receiveBookmarkedBook(this.state.book)}>
+                  {
+                    bookmarkedBooks.every((el) => el.id !== book.id) ? (
+                      <div className="book_page__button-text-container">
+                        <span>Bookmark</span>
+                        <i className="far fa-bookmark"></i>
+                      </div>
+                      ) : (
+                      <div className="book_page__button-text-container">
+                        <span>Bookmarked</span>
+                        <i className="fas fa-bookmark"></i>
+                      </div>
+                    )
+                  }
                 </button>
               </div>
             </div>

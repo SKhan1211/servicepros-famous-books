@@ -9,6 +9,7 @@ class SideBar extends React.Component {
     super(props)
     this.state = {
       selectedNav: '',
+      bookmarkedBooks: []
     }
   }
 
@@ -21,6 +22,9 @@ class SideBar extends React.Component {
       this.handleNavHighlighting('collection');
       this.setState({ selectedNav: this.props.location.pathname });
     }
+
+    // Set bookmarkedBooks to state
+    this.setState({ bookmarkedBooks: this.props.bookmarkedBooks })
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -50,6 +54,10 @@ class SideBar extends React.Component {
           selectedLi.removeChild(divMarker);
         }
       }
+    }
+
+    if (prevProps.bookmarkedBooks !== this.props.bookmarkedBooks) {
+      this.setState({ bookmarkedBooks: this.props.bookmarkedBooks });
     }
   }
 
@@ -118,18 +126,15 @@ class SideBar extends React.Component {
           <div className="sidebar__div__bookmarks-container">
             <header>Bookmarked</header>
             <ul>
-              <li className="sidebar__div__book-container">
-                <img src={Book} />
-                <p>Book 1</p>
-              </li>
-              <li className="sidebar__div__book-container">
-                <img src={Book} />
-                <p>Book 2</p>
-              </li>
-              <li className="sidebar__div__book-container">
-                <img src={Book} />
-                <p>Book 3</p>
-              </li>
+              {this.state.bookmarkedBooks.map((book) => (
+                <li key={`bookmarked-${book.title}`} className="sidebar__div__book-container">
+                  <img src={book.image} />
+                  <div className="sidebar__div__book__text">
+                    <p>{book.title}</p>
+                    <p>{book.author}</p>
+                  </div>
+                </li>
+              ))}
               <li>
                 <p>All Bookmarked</p>
               </li>
