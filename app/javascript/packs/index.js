@@ -6,8 +6,8 @@ import configureStore from "./store/store";
 import * as APIBookUtil from './util/books_api_util';
 
 document.addEventListener('DOMContentLoaded', async () => {
-  const persistedState = sessionStorage.getItem("reduxState")
-    ? JSON.parse(sessionStorage.getItem("reduxState"))
+  const persistedState = sessionStorage.getItem("SPFamousBooksAPI-reduxState-SK")
+    ? JSON.parse(sessionStorage.getItem("SPFamousBooksAPI-reduxState-SK"))
     : {};
 
   let store;
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   window.dispatch = store.dispatch;
 
   store.subscribe(() => {
-    sessionStorage.setItem("reduxState", JSON.stringify(store.getState()));
+    sessionStorage.setItem("SPFamousBooksAPI-reduxState-SK", JSON.stringify(store.getState()));
   });
 
   const root = document.getElementById('root');

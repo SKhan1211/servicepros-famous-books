@@ -11,6 +11,7 @@ class App extends React.Component {
   render () {
     return (
       <div style={{ display: "flex" }}>
+        {/* If location is any of the below, add the sidebar */}
         {location.pathname === "/books" || 
           location.pathname === "/collection" ||
           location.pathname.includes("/book/") ? <SideBarContainer /> : null}
