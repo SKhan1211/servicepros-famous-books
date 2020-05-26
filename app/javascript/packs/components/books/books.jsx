@@ -249,7 +249,6 @@ class Books extends React.Component {
         <ul className="books__ul__list-container">
           {
             this.state.books.map(book => {
-              console.log(book.title)
               return (
                 <li
                   key={book.title}
