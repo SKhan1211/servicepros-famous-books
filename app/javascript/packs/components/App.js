@@ -9,9 +9,6 @@ import Explore from './explore/explore';
 
 class App extends React.Component {
   render () {
-    // Reload the page when using back and forward buttons, 
-      // must use localStorage to persist user session since no login/database persistance feature
-    window.onpopstate = () => location.reload();
     return (
       <div style={{ display: "flex" }}>
         {location.pathname === "/books" || 
