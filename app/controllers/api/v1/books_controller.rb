@@ -5,7 +5,7 @@ class Api::V1::BooksController < ApplicationController
   end
 
   def show
-    @book = Book.find_by(title: params[:id])
+    @book = Book.where("title LIKE ?", "%#{params[:id]}%").first
     render :show
   end
 end

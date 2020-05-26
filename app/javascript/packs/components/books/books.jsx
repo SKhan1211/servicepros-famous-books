@@ -250,8 +250,11 @@ class Books extends React.Component {
           {
             this.state.books.map(book => {
               return (
-                <li key={book.title}>
-                  <LazyLoad height={200} placeholder={<img src={Book} />} >
+                <li
+                  key={book.title}
+                  onClick={() => this.props.history.push(`/book/${book.title}`)}
+                >
+                  <LazyLoad height={200} placeholder={<img src={Book} />}>
                     <img src={book.image ? book.image : Book} />
                   </LazyLoad>
                   <p>{book.title}</p>

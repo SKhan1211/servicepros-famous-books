@@ -17,11 +17,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 
   // Append random price, rating, and isbn to every entry that is null
-  books.map(book => {
-    if (book.price === null) book.price = APIBookUtil.createRandomPrice();
-    if (book.rating === null) book.rating = APIBookUtil.createRandomRating();
-    if (book.isbn === null) book.isbn = APIBookUtil.createRandomIsbn();
-  });
+  // books.map(book => {
+  //   if (book.price === null) book.price = APIBookUtil.createRandomPrice();
+  //   if (book.rating === null) book.rating = APIBookUtil.createRandomRating();
+  //   if (book.isbn === null) book.isbn = APIBookUtil.createRandomIsbn();
+  // });
 
   const preloadedState = {
     entities: {

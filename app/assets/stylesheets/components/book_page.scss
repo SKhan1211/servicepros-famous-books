@@ -1,0 +1,147 @@
+.book_page__outer-container {
+  width: 100%;
+  margin-left: 15vw;
+  background-color: #F6F8FF;
+  min-height: 100vh;
+
+  header {
+    .book_page__header__back-container {
+      display: inline-block;
+      margin: 1.5rem;
+      font-family: $Montserrat;
+      font-size: 1.3rem;
+      color: #293b65;
+      transition: color 0.2s;
+
+      i {
+        padding-right: 0.5rem;
+        font-size: 1.4rem;
+      }
+
+      span {
+        font-weight: 500;
+        position: relative;
+        bottom: 1px;
+      }
+    }
+
+    .book_page__header__back-container:hover {
+      color: #687699;
+      transition: color 0.3s;
+      cursor: pointer;
+    }
+
+    .book_page__header__text-container {
+      padding: 1rem 2rem;
+      font-family: $Montserrat;
+
+      h1 {
+        font-size: 2.5rem;
+        font-weight: 600;
+        color: #293963;
+      }
+
+      h3 {
+        font-size: 1.5rem;
+        font-weight: 500;
+        padding: 1rem 0;
+        color: #5d5e65;
+      }
+    }
+  }
+
+  section {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 50%;
+
+    .book_page__section__image-container {
+      padding: 5rem;
+      background: white;
+      margin: 0 2rem;
+      height: fit-content;
+      border: 2px solid #f4f3f9;
+    }
+
+    .book_page__section__text-container {
+      padding-right: 2rem;
+      font-family: $Montserrat;
+
+      p {
+        padding: 0.5rem 0;
+        font-size: 0.9rem;
+
+        span {
+          font-weight: 600;
+          font-size: 0.9rem;
+        }
+      }
+
+      .book_page__section-rating-container {
+        .books__li__stars-container {
+          color: #898a89;
+
+          .fas.fa-star {
+            color: $fireopal;
+          }
+        }
+      }
+
+      p:nth-of-type(1) {
+        font-style: italic;
+        font-size: 0.9rem;
+        line-height: 1.2rem;
+        max-width: 836px;
+      }
+
+      .book_page__section__info-container {
+        display: flex;
+        justify-content: space-between;
+
+        .book_page__section-buttons-container {
+          display: flex;
+          align-items: flex-end;
+
+          button {
+            padding: 0.6rem 3vh;
+            margin: 0vw 1vw;
+            cursor: pointer;
+            max-height: 47px;
+            min-width: 10rem;
+            border-radius: 3px;
+            text-transform: uppercase;
+            font-weight: 600;
+
+            .book_page__button-text-container {
+              display: flex;
+              justify-content: space-around;
+            }
+          }
+
+          button:first-of-type {
+            background-color: #d8685a;
+            color: white;
+            transition: background-color 0.8s;
+          }
+
+          button:last-of-type {
+            background-color: #515e7d;
+            color: white;
+            transition: background-color 0.8s;
+          }
+
+          button:first-of-type:hover {
+            background: #fa8c7d;
+            transition: background-color 0.8s;
+          }
+
+          button:last-of-type:hover {
+            background-color: #687699;
+            transition: background-color 0.8s;
+          }
+        }
+      }
+    }
+  }
+}
