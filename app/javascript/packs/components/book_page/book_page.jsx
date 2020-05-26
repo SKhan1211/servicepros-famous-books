@@ -8,12 +8,13 @@ class BookPage extends React.Component {
     this.state = {
       book: { title: '' },
       bookmarkedBooks: [],
+      purchasedBooks: [],
     }
   }
 
   componentDidMount() {
     this.props.fetchBook(this.props.book)
-      .then(bookData => this.setState({ book: bookData.book, bookmarkedBooks: this.props.bookmarkedBooks }))
+      .then(bookData => this.setState({ book: bookData.book, bookmarkedBooks: this.props.bookmarkedBooks, purchasedBooks: this.props.purchasedBooks }))
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -24,6 +25,10 @@ class BookPage extends React.Component {
 
     if (prevProps.bookmarkedBooks !== this.props.bookmarkedBooks) {
       this.setState({ bookmarkedBooks: this.props.bookmarkedBooks });
+    }
+
+    if (prevProps.purchasedBooks !== this.props.purchasedBooks) {
+      this.setState({ purchasedBooks: this.props.purchasedBooks });
     }
   }
 
@@ -45,8 +50,8 @@ class BookPage extends React.Component {
   }
 
   render() {
-    const { book, bookmarkedBooks } = this.state;
-    console.log(bookmarkedBooks)
+    const { book, bookmarkedBooks, purchasedBooks } = this.state;
+    console.log(this.props.history)
 
     return (
       <div className="book_page__outer-container">
@@ -90,27 +95,40 @@ class BookPage extends React.Component {
                 </div>
               </div>
               <div className="book_page__section-buttons-container">
-                <button>
-                  <div className="book_page__button-text-container">
-                    <span>Buy Now</span>
-                    <i className="fas fa-shopping-cart"></i>
-                  </div>
-                </button>
-                <button onClick={() => this.props.receiveBookmarkedBook(this.state.book)}>
+                {
+                  purchasedBooks.every((el) => el.id !== book.id) ? (
+                    <button onClick={() => {this.props.receivePurchasedBook(this.state.book); this.props.history.push('/purchase')}}>
+                      <div className="book_page__button-text-container">
+                        <span>Buy Now</span>
+                        <i className="fas fa-shopping-cart"></i>
+                      </div>
+                    </button>
+                    ) : (
+                    <button id="book_page__purchased-button">
+                      <div className="book_page__button-text-container">
+                        <span>Purchased</span>
+                        <i className="fas fa-shopping-cart"></i>
+                      </div>
+                    </button>
+                  )
+                }
                   {
                     bookmarkedBooks.every((el) => el.id !== book.id) ? (
-                      <div className="book_page__button-text-container">
-                        <span>Bookmark</span>
-                        <i className="far fa-bookmark"></i>
-                      </div>
+                      <button onClick={() => this.props.receiveBookmarkedBook(this.state.book)}>
+                        <div className="book_page__button-text-container">
+                          <span>Bookmark</span>
+                          <i className="far fa-bookmark"></i>
+                        </div>
+                      </button>
                       ) : (
-                      <div className="book_page__button-text-container">
-                        <span>Bookmarked</span>
-                        <i className="fas fa-bookmark"></i>
-                      </div>
+                      <button id="book_page__bookmarked-button" onClick={() => this.props.receiveBookmarkedBook(this.state.book)}>
+                        <div className="book_page__button-text-container">
+                          <span>Bookmarked</span>
+                          <i className="fas fa-bookmark"></i>
+                        </div>
+                      </button>
                     )
                   }
-                </button>
               </div>
             </div>
           </div>

@@ -19,7 +19,8 @@ class App extends React.Component {
           location.pathname === "/books" ||
           location.pathname === "/collection" ||
           location.pathname.includes("/book/") ||
-          location.pathname === "/bookmarked" ? (
+          location.pathname === "/bookmarked" ||
+          location.pathname === "/purchase" ? (
             <SideBarContainer />
           ) : null
         }

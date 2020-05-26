@@ -144,6 +144,15 @@
             background-color: #687699;
             transition: background-color 0.6s;
           }
+
+          #book_page__purchased-button {
+            background: #fa8c7d;
+            pointer-events: none;
+          }
+
+          #book_page__bookmarked-button {
+            background-color: #687699;
+          }
         }
       }
     }
