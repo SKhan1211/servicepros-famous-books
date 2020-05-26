@@ -226,17 +226,18 @@ class Books extends React.Component {
   }
 
   render() {
+    let location = this.props.location.pathname;
     return (
       <div className="books__outer-container">
         <header className="books__header__title-container">
-          <h1>Bookstore</h1>
+          <h1>{this.props.title}</h1>
 
           <div className="books__header__title__sort-container">
-            <Link data-title-type="alphabetical" to="/books?sort=alphabetical"><p>Alphabetical</p></Link>
+            <Link data-title-type="alphabetical" to={location + "?sort=alphabetical"}><p>Alphabetical</p></Link>
             <span>/</span>
-            <Link data-title-type="price" to="/books?sort=price"><p>Price</p></Link>
+            <Link data-title-type="price" to={location + "?sort=price"}><p>Price</p></Link>
             <span>/</span>
-            <Link data-title-type="rating" to="/books?sort=rating"><p>Rating</p></Link>
+            <Link data-title-type="rating" to={location + "?sort=rating"}><p>Rating</p></Link>
           </div>
 
           <div className="books__header__title__input-container">

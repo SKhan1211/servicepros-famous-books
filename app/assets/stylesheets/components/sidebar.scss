@@ -4,12 +4,12 @@
 }
 
 .sidebar__outer-container {
-
-  background: #0d1721; // TEST
+  background: #0d1721;
   position: fixed;
   overflow: scroll;
   top: 0;
   bottom: 0;
+  min-width: 216px;
 
   .sidebar__section__logo-container {
     img {

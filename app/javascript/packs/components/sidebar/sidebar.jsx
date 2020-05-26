@@ -9,7 +9,7 @@ class SideBar extends React.Component {
     super(props)
     this.state = {
       selectedNav: '',
-      bookmarkedBooks: []
+      bookmarkedBooks: [],
     }
   }
 
@@ -127,7 +127,11 @@ class SideBar extends React.Component {
             <header>Bookmarked</header>
             <ul>
               {this.state.bookmarkedBooks.map((book) => (
-                <li key={`bookmarked-${book.title}`} className="sidebar__div__book-container">
+                <li
+                  key={`bookmarked-${book.title}`}
+                  className="sidebar__div__book-container"
+                  onClick={() => this.props.history.push(`/book/${book.title}`)}
+                >
                   <img src={book.image} />
                   <div className="sidebar__div__book__text">
                     <p>{book.title}</p>
@@ -136,7 +140,9 @@ class SideBar extends React.Component {
                 </li>
               ))}
               <li>
-                <p>All Bookmarked</p>
+                <p onClick={() => this.props.history.push("/bookmarked")}>
+                  All Bookmarked
+                </p>
               </li>
             </ul>
           </div>
