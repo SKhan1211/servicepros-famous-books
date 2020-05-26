@@ -26,17 +26,29 @@ class SideBar extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.location.pathname !== this.props.location.pathname) {
       // This algorithm clears and adds the blue highlight to sidebar nav as needed
-      if (this.state.selectedNav === '/books' || this.state.selectedNav === '/collection') {
+      if (this.props.location.pathname === '/books' || this.props.location.pathname === '/collection') {
         // Clear blue highlight from previous li
         let selectedLi = document.getElementsByClassName("sidebar__div__browse__selected-li")[0];
-        selectedLi.className = '';
-        selectedLi.firstElementChild.className = '';
-        selectedLi.firstElementChild.firstElementChild.className = '';
-        let divMarker = document.getElementsByClassName('sidebar__div__li__div-marker')[0];
-        selectedLi.removeChild(divMarker);
+        if (selectedLi !== undefined) { // If selectedLi exists
+          selectedLi.className = '';
+          selectedLi.firstElementChild.className = '';
+          selectedLi.firstElementChild.firstElementChild.className = '';
+          let divMarker = document.getElementsByClassName('sidebar__div__li__div-marker')[0];
+          selectedLi.removeChild(divMarker);
+        }
 
         if (this.props.location.pathname === '/books') this.handleNavHighlighting('books');
         else if (this.props.location.pathname === '/collection') this.handleNavHighlighting('collection');
+      } else {
+        // Clear blue highlight from previous li
+        let selectedLi = document.getElementsByClassName("sidebar__div__browse__selected-li")[0];
+        if (selectedLi !== undefined) { // If selectedLi exists
+          selectedLi.className = '';
+          selectedLi.firstElementChild.className = '';
+          selectedLi.firstElementChild.firstElementChild.className = '';
+          let divMarker = document.getElementsByClassName('sidebar__div__li__div-marker')[0];
+          selectedLi.removeChild(divMarker);
+        }
       }
     }
   }
@@ -57,22 +69,43 @@ class SideBar extends React.Component {
     return (
       <div className="sidebar__outer-container">
         <section className="sidebar__section__logo-container">
-          <img src={MyLogo} onClick={() => { window.location.href = '/'; }}></img>
+          <img
+            src={MyLogo}
+            onClick={() => {
+              window.location.href = "/";
+            }}
+          ></img>
         </section>
         <section className="sidebar__section__lists-container">
           <div className="sidebar__div__browse-container">
             <header>Browse</header>
             <ul>
-              <li data-sidebar-nav-type="books"><Link to="/books"><p>Bookstore</p></Link></li>
-              <li data-sidebar-nav-type="collection"><Link to="/collection"><p>My Collection</p></Link></li>
-              <li data-sidebar-nav-type="explore"><Link to="/explore"><p># Explore</p></Link></li>
+              <li data-sidebar-nav-type="books">
+                <Link to="/books">
+                  <p>Bookstore</p>
+                </Link>
+              </li>
+              <li data-sidebar-nav-type="collection">
+                <Link to="/collection">
+                  <p>My Collection</p>
+                </Link>
+              </li>
+              <li data-sidebar-nav-type="explore">
+                <Link to="/explore">
+                  <p># Explore</p>
+                </Link>
+              </li>
             </ul>
           </div>
           <div className="sidebar__div__new_releases-container">
             <header>New Releases</header>
             <ul>
-              {this.props.newReleases.map(book => (
-                <li key={`new-release-${book.title}`} className="sidebar__div__book-container">
+              {this.props.newReleases.map((book) => (
+                <li
+                  key={`new-release-${book.title}`}
+                  className="sidebar__div__book-container"
+                  onClick={() => this.props.history.push(`/book/${book.title}`)}
+                >
                   <img src={book.image} />
                   <div className="sidebar__div__book__text">
                     <p>{book.title}</p>
@@ -85,16 +118,27 @@ class SideBar extends React.Component {
           <div className="sidebar__div__bookmarks-container">
             <header>Bookmarked</header>
             <ul>
-              <li className="sidebar__div__book-container"><img src={Book} /><p>Book 1</p></li>
-              <li className="sidebar__div__book-container"><img src={Book} /><p>Book 2</p></li>
-              <li className="sidebar__div__book-container"><img src={Book} /><p>Book 3</p></li>
-              <li><p>All Bookmarked</p></li>
+              <li className="sidebar__div__book-container">
+                <img src={Book} />
+                <p>Book 1</p>
+              </li>
+              <li className="sidebar__div__book-container">
+                <img src={Book} />
+                <p>Book 2</p>
+              </li>
+              <li className="sidebar__div__book-container">
+                <img src={Book} />
+                <p>Book 3</p>
+              </li>
+              <li>
+                <p>All Bookmarked</p>
+              </li>
             </ul>
           </div>
           <footer>Created By: Suhaib Khan</footer>
         </section>
       </div>
-    )
+    );
   }
 }
 
