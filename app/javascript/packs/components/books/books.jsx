@@ -230,16 +230,6 @@ class Books extends React.Component {
   render() {
     let location = this.props.location.pathname;
     return (
-      <div style={{display: "flex", width: "100%"}}>
-        <SideBarContainer />
-        <div
-          style={{
-            minWidth: "216px",
-            width: "17.6vw",
-            background: "#0d1721",
-            height: "1%"
-          }}
-        ></div>
         <div className="books__outer-container">
           <header className="books__header__title-container">
             <h1>{this.props.title}</h1>
@@ -293,7 +283,6 @@ class Books extends React.Component {
             })}
           </ul>
         </div>
-      </div>
     );
   }
 }
