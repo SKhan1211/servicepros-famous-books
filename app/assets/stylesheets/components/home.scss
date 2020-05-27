@@ -72,6 +72,10 @@
         font-weight: 500;
       }
 
+      button:hover {
+        background-color: #17729cb8;
+      }
+
       button:before {
         content: '';
         position: absolute;
