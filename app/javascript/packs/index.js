@@ -34,8 +34,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   };
 
   // Test functions for Redux store, remove in production
-  window.getState = store.getState;
-  window.dispatch = store.dispatch;
+  // window.getState = store.getState;
+  // window.dispatch = store.dispatch;
 
   store.subscribe(() => {
     sessionStorage.setItem("SPFamousBooksAPI-reduxState-SK", JSON.stringify(store.getState()));

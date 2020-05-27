@@ -7,7 +7,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require 'httparty'
-require 'byebug'
 
 def createRandomPrice
   randomNum = Random.rand(25.00).round(2)

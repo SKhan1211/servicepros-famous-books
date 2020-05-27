@@ -36,3 +36,7 @@ yarn-debug.log*
 .yarn-integrity
 
 .env
+
+*docker-compose*
+Dockerfile
+/config/credentials/production.key
