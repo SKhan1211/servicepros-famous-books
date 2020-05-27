@@ -16,20 +16,20 @@ class App extends React.Component {
       <div style={{ display: "flex" }}>
         {/* If location is any of the below, add the sidebar */}
         {
-          location.pathname === "/books" ||
-          location.pathname === "/collection" ||
-          location.pathname.includes("/book/") ||
-          location.pathname === "/bookmarked" ||
-          location.pathname === "/purchase" ? (
-            <SideBarContainer />
-          ) : null
+          // location.pathname === "/books" ||
+          // location.pathname === "/collection" ||
+          // location.pathname.includes("/book/") ||
+          // location.pathname === "/bookmarked" ||
+          // location.pathname === "/purchase" ? (
+            // <SideBarContainer />
+          // ) : null
         }
 
         {/* Sidebar space holder div */}
         {
-          location.pathname !== "/" ?
-            <div style={{ minWidth: "216px", width: "17.7vw", background: "#0d1721" }}></div> 
-          : null
+          // location.pathname !== "/" ?
+          //   <div style={{ minWidth: "216px", width: "17.7vw", background: "#0d1721" }}></div> 
+          // : null
         }
 
         <div className="home-page__animation-null"></div>

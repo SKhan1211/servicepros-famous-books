@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import Book from "../../../../assets/images/placeholder_book_cover.gif";
 import LazyLoad, { forceCheck } from 'react-lazyload';
 
+import SideBarContainer from '../sidebar/sidebar_container';
+
 class Books extends React.Component {
   constructor(props) {
     super(props);
@@ -228,28 +230,50 @@ class Books extends React.Component {
   render() {
     let location = this.props.location.pathname;
     return (
-      <div className="books__outer-container">
-        <header className="books__header__title-container">
-          <h1>{this.props.title}</h1>
+      <div style={{display: "flex", width: "100%"}}>
+        <SideBarContainer />
+        <div
+          style={{
+            minWidth: "216px",
+            width: "17.6vw",
+            background: "#0d1721",
+            height: "1%"
+          }}
+        ></div>
+        <div className="books__outer-container">
+          <header className="books__header__title-container">
+            <h1>{this.props.title}</h1>
 
-          <div className="books__header__title__sort-container">
-            <Link data-title-type="alphabetical" to={location + "?sort=alphabetical"}><p>Alphabetical</p></Link>
-            <span>/</span>
-            <Link data-title-type="price" to={location + "?sort=price"}><p>Price</p></Link>
-            <span>/</span>
-            <Link data-title-type="rating" to={location + "?sort=rating"}><p>Rating</p></Link>
-          </div>
+            <div className="books__header__title__sort-container">
+              <Link
+                data-title-type="alphabetical"
+                to={location + "?sort=alphabetical"}
+              >
+                <p>Alphabetical</p>
+              </Link>
+              <span>/</span>
+              <Link data-title-type="price" to={location + "?sort=price"}>
+                <p>Price</p>
+              </Link>
+              <span>/</span>
+              <Link data-title-type="rating" to={location + "?sort=rating"}>
+                <p>Rating</p>
+              </Link>
+            </div>
 
-          <div className="books__header__title__input-container">
-            <input type="text" placeholder="Search all books" onChange={this.handleSearch}/>
-            <i className="fas fa-search"></i>
-          </div>
-        </header>
+            <div className="books__header__title__input-container">
+              <input
+                type="text"
+                placeholder="Search all books"
+                onChange={this.handleSearch}
+              />
+              <i className="fas fa-search"></i>
+            </div>
+          </header>
 
-        {/* Books Below can be moved to another BooksList Component */}
-        <ul className="books__ul__list-container">
-          {
-            this.state.books.map(book => {
+          {/* Books Below can be moved to another BooksList Component */}
+          <ul className="books__ul__list-container">
+            {this.state.books.map((book) => {
               return (
                 <li
                   key={book.title}
@@ -266,10 +290,9 @@ class Books extends React.Component {
                   </div>
                 </li>
               );
-            })
-          }
-        </ul>
-
+            })}
+          </ul>
+        </div>
       </div>
     );
   }
