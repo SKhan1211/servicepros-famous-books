@@ -1,5 +1,7 @@
 import React from "react";
 
+import Loading from '../loading/loading';
+
 const BOOK_TITLES = [
 '1984', 'A Clockwork Orange', 'A Dance to the Music of Time', 'A Death in the Family',
 'A Handful of Dust', 'A House for Mr. Biswas', 'A Passage to India', 'All the King\'s Men',
@@ -31,9 +33,9 @@ class Explore extends React.Component {
     this.props.history.push(`/book/${BOOK_TITLES[randomTitleIdx]}`)
   }
 
-  render() { // Add loading spinner
+  render() { 
     return (
-      null
+      <Loading />
     )
   }
 };

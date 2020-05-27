@@ -1,6 +1,7 @@
 import React from "react";
 
 import SideBarContainer from '../sidebar/sidebar_container';
+import Loading from '../loading/loading';
 
 class BookPage extends React.Component {
   constructor(props) {
@@ -10,18 +11,20 @@ class BookPage extends React.Component {
       book: { title: '' },
       bookmarkedBooks: [],
       purchasedBooks: [],
+      loading: true,
     }
   }
 
   componentDidMount() {
     this.props.fetchBook(this.props.book)
-      .then(bookData => this.setState({ book: bookData.book, bookmarkedBooks: this.props.bookmarkedBooks, purchasedBooks: this.props.purchasedBooks }))
+      .then(bookData => this.setState({ book: bookData.book, bookmarkedBooks: this.props.bookmarkedBooks, purchasedBooks: this.props.purchasedBooks, loading: false }))
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.book !== this.props.book) {
+      this.setState({ loading: true })
       this.props.fetchBook(this.props.book)
-      .then(bookData => this.setState({ book: bookData.book }))
+      .then(bookData => this.setState({ book: bookData.book, loading: false }))
     }
 
     if (prevProps.bookmarkedBooks !== this.props.bookmarkedBooks) {
@@ -51,9 +54,10 @@ class BookPage extends React.Component {
   }
 
   render() {
-    const { book, bookmarkedBooks, purchasedBooks } = this.state;
+    const { book, bookmarkedBooks, purchasedBooks, loading } = this.state;
 
-    return (
+    return !loading ? 
+    (
       <div className="book_page__outer-container">
         <header>
           <div
@@ -143,8 +147,10 @@ class BookPage extends React.Component {
             </div>
           </div>
         </section>
-      </div>
-    );
+      </div> 
+    ) : (
+        <Loading />
+      )
   }
 };
 

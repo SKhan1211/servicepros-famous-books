@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import Book from "../../../../assets/images/placeholder_book_cover.gif";
 import LazyLoad, { forceCheck } from 'react-lazyload';
 
-import SideBarContainer from '../sidebar/sidebar_container';
-
 class Books extends React.Component {
   constructor(props) {
     super(props);
