@@ -32,6 +32,7 @@ class App extends React.Component {
           : null
         }
 
+        <div className="home-page__animation-null"></div>
 
         <Switch>
           <Route exact path="/books" component={BookstoreContainer} />

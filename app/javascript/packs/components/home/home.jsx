@@ -3,6 +3,18 @@ import React from 'react';
 import MyLogo from "../../../../assets/images/my_logo.png";
 
 class Home extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.handleEnter = this.handleEnter.bind(this);
+  }
+
+  handleEnter() {
+    document.getElementsByClassName("home-page__animation-null")[0].className = "home-page__animation";
+    setTimeout(() => this.props.history.push('/books'), 2000)
+    setTimeout(() => document.getElementsByClassName("home-page__animation")[0].className = "home-page__animation-null", 4000)
+  }
+
   render() {
     return (
       <div className="home-page__outer-container">
@@ -27,7 +39,7 @@ class Home extends React.Component {
             </div>
             <img src={MyLogo}></img>
             <div className="home-page__logo-gradient"></div>
-            <button>Enter Now</button>
+            <button onClick={this.handleEnter}>Enter Now</button>
           </div>
         </header>
         <footer>
