@@ -63,6 +63,10 @@ div.purchase__outer-container {
       pointer-events: none;
     }
 
+    button::-moz-focus-inner { /* Remove Firefox dashed line */
+      border: 0;
+    }
+
     button:before {
       content: '';
       position: absolute;

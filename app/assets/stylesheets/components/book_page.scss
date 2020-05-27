@@ -123,6 +123,17 @@
             }
           }
 
+          button::-moz-focus-inner { /* Remove Firefox dashed line */
+            border: 0;
+          }
+
+          @-moz-document url-prefix() { // /* Firefox only styling */
+            button {
+              border: 0;
+              box-shadow: 0px 0px 1px 1px #e8e5e5;
+            }
+          }
+
           button:first-of-type {
             background-color: #d8685a;
             color: white;

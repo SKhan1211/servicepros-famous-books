@@ -11,6 +11,8 @@
   bottom: 0;
   min-width: 216px;
   box-shadow: 1px 0px 5px 0px grey;
+  scrollbar-width: none; /* Remove scrollbar for Firefox */
+  overflow-x: hidden; /* Stop Firefox from scrolling left to right */
 
   .sidebar__section__logo-container {
     img {
