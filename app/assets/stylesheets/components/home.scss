@@ -17,20 +17,21 @@
 
       .home-page__links-container {
         position: relative;
-        top: -12vh;
+        top: -14vh;
         z-index: 3;
         width: 100%;
         display: flex;
-        justify-content: space-around;
+        justify-content: flex-end;
         font-family: $Montserrat;
+        margin-right: 5rem;
 
         a {
           text-decoration: none;
           color: rgba(209, 205, 205, 0.851);
           transition: color 0.1s;
-          font-size: 1.2rem;
+          font-size: 1.1rem;
           font-weight: 500;
-          letter-spacing: 0.1rem;
+          margin-right: 3rem;
         }
 
         a:hover {
