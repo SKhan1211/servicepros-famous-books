@@ -25,7 +25,13 @@ class App extends React.Component {
           ) : null
         }
 
-        <div style={{ minWidth: "216px", width: "17.7vw", background: "#0d1721" }}></div> {/* Sidebar space holder div */}
+        {/* Sidebar space holder div */}
+        {
+          location.pathname !== "/" ?
+            <div style={{ minWidth: "216px", width: "17.7vw", background: "#0d1721" }}></div> 
+          : null
+        }
+
 
         <Switch>
           <Route exact path="/books" component={BookstoreContainer} />

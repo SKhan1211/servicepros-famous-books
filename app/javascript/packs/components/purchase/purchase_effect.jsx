@@ -12,6 +12,7 @@ class PurchaseEffect extends React.Component {
 
   componentDidMount() {
     document.addEventListener("click", this.handler, true);
+    document.getElementsByClassName("sidebar__outer-container")[0].style.boxShadow = "none";
     setTimeout(() => this.handleForm(), 500);
     setTimeout(() => document.removeEventListener("click", this.handler, true), 3800);
   }
@@ -30,7 +31,10 @@ class PurchaseEffect extends React.Component {
     setTimeout(() => this.typeWriter(text2, input2), 2000)
     setTimeout(() => this.typeWriter(text3, input3), 2600)
     setTimeout(() => button.focus(), 3000)
-    setTimeout(() => this.props.history.push('/collection'), 3800)
+    setTimeout(() => {
+      this.props.history.push('/collection');
+      document.getElementsByClassName("sidebar__outer-container")[0].style.boxShadow = "1px 0px 5px 0px grey";
+    }, 3800)
   }
 
   typeWriter(text1, node) {

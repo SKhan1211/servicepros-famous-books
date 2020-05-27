@@ -4,12 +4,13 @@
 }
 
 .sidebar__outer-container {
-  background: #0d1721;
+  background: #090f17;
   position: fixed;
   overflow: scroll;
   top: 0;
   bottom: 0;
   min-width: 216px;
+  box-shadow: 1px 0px 5px 0px grey;
 
   .sidebar__section__logo-container {
     img {
@@ -113,7 +114,7 @@
         }
 
         .sidebar__div__book-container {
-          border: 2px solid #0d1721;
+          border: 2px solid #090f17;
           box-sizing: border-box;
           transition: 0.2s border;
           color: $ghostwhite;
