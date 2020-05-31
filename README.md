@@ -2,7 +2,17 @@
   src="./app/assets/images/my_logo.png" 
   alt="SP Logo" 
   width="200" 
-  style="margin-left: auto; margin-right: auto; display: block;" 
 />
 
-<a href="https://serviceprosfamousbooks.herokuapp.com/"><p style="text-align: center; font-style: italic; font-size: 25px;">Live Link</p></a>
+## *[Live Link](https://serviceprosfamousbooks.herokuapp.com/ "Live Link")*
+
+### Brief Overview
+
+This project is my coding challenge submission to the Service Pro's software engineering team. It is a full-stack bookstore application that allows users to bookmark books and "buy" books. The following technologies are utilized to build this project:
+* Ruby on Rails as a backend web framework for creating/managing API endpoints
+* React.js to handle frontend views
+* Redux for local state management
+* PostgreSQL as the database
+
+
+
