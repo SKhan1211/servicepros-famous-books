@@ -1,24 +1,8 @@
-# README
+<img 
+  src="./app/assets/images/my_logo.png" 
+  alt="SP Logo" 
+  width="200" 
+  style="margin-left: auto; margin-right: auto; display: block;" 
+/>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+<a href="https://serviceprosfamousbooks.herokuapp.com/"><p style="text-align: center; font-style: italic; font-size: 25px;">Live Link</p></a>
